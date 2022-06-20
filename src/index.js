@@ -259,7 +259,7 @@ class Row extends React.Component {
   }
   render() {
     return (
-      <div className={"game-row" + (this.props.rejected ? " rejected" : "")}>
+      <div className={"game-row" + (this.props.rejected ? " rejected" : "")} style={{"--display-happy-tile": (this.props.answer === this.props.attempt.join("") ? 1 : 0)}}>
         {this.props.attempt.map((letter, index) => {
           this.status = this.getLetterStatus(letter,index)
           return (
