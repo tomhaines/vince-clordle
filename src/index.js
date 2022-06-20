@@ -245,7 +245,7 @@ class IntroModal extends React.Component {
               <p>This is a dumb parody of WORDLE.</p>
               <p>Please don't play this game. Please go play the real WORDLE. Trust me that it's better.</p>
               <p>This is like WORDLE, but the words are all from the 1984 hit comedy Ghostbusters.</p>
-              <p>So, you can try GHOST, because that word was spoken in the move, but LEMUR won't work, because obviously nobody said LEMUR in the 1984 hit comedy Ghostbusters.</p>
+              <p>So, you can try GHOST, because that word was spoken in the movie, but LEMUR won't work, because obviously nobody said LEMUR in the 1984 hit comedy Ghostbusters.</p>
             </section>
             <section class="questions">
               <h2>Questions?</h2>
