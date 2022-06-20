@@ -70,8 +70,10 @@ class Game extends React.Component {
       nextLetterIndex: 0,
       lastAttemptRejected: false,
       attempts: Array(this.props.numberOfAttempts).fill().map(() => Array(this.props.answer.length).fill("")),
-      acceptedLetters: {} // a hash of letters accepted, and whether they were present, absent, or correct
+      acceptedLetters: {}, // a hash of letters accepted, and whether they were present, absent, or correct
+      introModalVisible: true,
     }
+    this.displayModal = this.displayModal.bind(this);
     this.addAlert = this.addAlert.bind(this);
     this.deleteAlert = this.deleteAlert.bind(this);
     this.submitLetter = this.submitLetter.bind(this);
@@ -112,6 +114,10 @@ class Game extends React.Component {
     setTimeout(() => {
       this.deleteAlert(alert.time);
     }, this.props.alertNotificationTime)
+  }
+
+  displayModal(visible) {
+    this.setState({introModalVisible: visible})
   }
   
   deleteAlert(time) {
@@ -188,33 +194,77 @@ class Game extends React.Component {
   
   render() {
     return (
-      <div className="game" style={{"--wordLength": this.props.answer.length}}>
-        <div className="board-container">
-          <Board
-            answer={this.props.answer}
-            attempts={this.state.attempts}
-            currentAttempt={this.state.currentAttempt}
-            lastAttemptRejected={this.state.lastAttemptRejected}
-           />
-        </div>
-        <div className="keyboard">
-          <Keyboard
-            answer={this.props.answer}
-            acceptedAttempts={this.getAcceptedAttempts()}
-            acceptedLetters={this.state.acceptedLetters}
-            submitLetter={this.submitLetter}
-            submitText={this.props.submitText}
-            backspaceText={this.props.backspaceText}
-            keyboardLayout={this.props.keyboardLayout}
+            
+      <div className="game-container" style={{"--wordLength": this.props.answer.length}}>
+        <Header helpOnClick={() => this.displayModal(true)} />
+        <IntroModal visible={this.state.introModalVisible} closeModal={() => this.displayModal(false)}/>  
+        <div className="game">
+          <div className="board-container">
+            <Board
+              answer={this.props.answer}
+              attempts={this.state.attempts}
+              currentAttempt={this.state.currentAttempt}
+              lastAttemptRejected={this.state.lastAttemptRejected}
+            />
+          </div>
+          <div className="keyboard">
+            <Keyboard
+              answer={this.props.answer}
+              acceptedAttempts={this.getAcceptedAttempts()}
+              acceptedLetters={this.state.acceptedLetters}
+              submitLetter={this.submitLetter}
+              submitText={this.props.submitText}
+              backspaceText={this.props.backspaceText}
+              keyboardLayout={this.props.keyboardLayout}
+            />
+          </div>
+          <Alert 
+            alerts={this.state.alerts}
+            gameComplete={this.state.gameComplete}
+            notificationTime={alertNotificationTime}
           />
         </div>
-        <Alert 
-          alerts={this.state.alerts}
-          gameComplete={this.state.gameComplete}
-          notificationTime={alertNotificationTime}
-        />
       </div>
     );
+  }
+}
+
+class IntroModal extends React.Component {
+  render() {
+    if (this.props.visible) {
+      return  (
+        <div className="intro-modal-container">
+          <div class="intro-modal">
+            <div class="close-icon" onClick={this.props.closeModal}>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                <path fill="var(--color-tone-1)" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+              </svg>
+            </div>
+            <section>
+              <p>Guess the VINCE CLORDLE in six tries.</p>
+              <p>This is a dumb parody of WORDLE.</p>
+              <p>Please don't play this game. Please go play the real WORDLE. Trust me that it's better.</p>
+              <p>This is like WORDLE, but the words are all from the 1984 hit comedy Ghostbusters.</p>
+              <p>So, you can try GHOST, because that word was spoken in the move, but LEMUR won't work, because obviously nobody said LEMUR in the 1984 hit comedy Ghostbusters.</p>
+            </section>
+            <section class="questions">
+              <h2>Questions?</h2>
+              <h3>Why doesn't the word VINCE work? Surely this dumb game was named after Vince Clortho, Keymaster of Gozer...Volguus Zildrohoar, Lord of the Seboullia?</h3>
+              <p>It was, but his name is actually spelled VINZ, not VINCE, and that's only four letters. So that won't work. Sorry, no refunds.</p>
+              <h3>Why didn't you name it VINZ CLORDLE then? Had you already purchased vinceclordle.com?</h3>
+              <p>No, I figured that out long before I purchased vinceclordle.com. I just like VINCE better. Plus VINZ sounds like the kind of guy who really wants to explain to you how you're "just not getting" his crypto startup idea. And honestly, I wasn't really interested in hearing about that.</p>
+              <h3>This seems dumb and hard for no reason. So many common five letter words like DREAM and BRAIN aren't available.</h3>
+              <p>Yep. It sure is. Like I said, you really shouldn't even play this. Only five letter words from the 1984 hit comedy Ghostbusters appear in this dumb game. Again, I'm sorry, but I can't offer any refunds.</p>
+              <h3>It doesn't even add anything new to the premise of the game.</h3>
+              <p>Correct. It does not. No refunds.</p>
+            </section>
+            <section>
+              <p><strong>A new VINCE CLORDLE will available each day!</strong></p>
+            </section>
+          </div>
+        </div>
+      )
+    }
   }
 }
 
@@ -345,18 +395,26 @@ class Header extends React.Component {
   render() {
     return(
       <header className="header">
-      <div className="title">
-        Vince Clordle
-      </div>
-    </header>
+        <div className='menu-left'>
+          <div className="help-icon" onClick={this.props.helpOnClick}>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+              <path fill="var(--color-tone-1)" d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"></path>
+            </svg>
+          </div>
+          </div>
+        <div className="title">
+          Vince Clordle
+        </div>
+        <div className='menu-right'></div>
+      </header>
     )
   }
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <div class="container">
-    <Header />
     <Game
       wordList={wordList}
       winPhrases={winPhrases}
