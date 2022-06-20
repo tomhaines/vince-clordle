@@ -34,6 +34,13 @@
   font-family: helvetica;
 }
 
+/* prevent side to side scrolling on mobile */
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative;
+}
 
 html,body, .container {
     height: 100%;
@@ -136,14 +143,22 @@ body {
   animation-duration: 0.1s;
 }
 
+@keyframes happy-tile {
+    0% { transform: translate(0px, 0px); }
+    50% { transform: translate(0px, -10px); }
+    100% { transform: translate(0px, 0px); }
+}
+
 .tile.present,
 .tile.absent,
 .tile.correct {
-  animation-name: flip-hor, change-background;
-  animation-duration: var(--tile-flip-speed), calc(var(--tile-flip-speed) / 2);
-  animation-timing-function: ease-out, step-end;
+  animation-name: flip-hor, change-background, happy-tile;
+  animation-duration: var(--tile-flip-speed), calc(var(--tile-flip-speed) / 2), calc(var(--display-happy-tile) * calc(var(--tile-flip-speed) / 2));
+  animation-timing-function: ease-out, step-end, ease-out;
   animation-fill-mode: forwards;
-  animation-delay: calc(var(--index) * var(--tile-flip-speed));
+  --delay:  calc(var(--index) * var(--tile-flip-speed));
+  --happy-tile-delay: calc(calc(var(--delay) / 4) + calc(var(--wordLength) * var(--tile-flip-speed)) );
+  animation-delay:var(--delay), var(--delay), var(--happy-tile-delay);
 }
 
 .keyboard {
