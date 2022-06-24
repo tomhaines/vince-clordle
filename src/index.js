@@ -242,7 +242,7 @@ class IntroModal extends React.Component {
             </div>
             <section>
               <p>Guess the VINCE CLORDLE in six tries.</p>
-              <p>This is a dumb parody of WORDLE.</p>
+              <p>This is a dumb parody of WORDLE I made to brush up on front-end development.</p>
               <p>Please don't play this game. Please go play the real WORDLE. Trust me that it's better.</p>
               <p>This is like WORDLE, but the words are all from the 1984 hit comedy Ghostbusters.</p>
               <p>So, you can try GHOST, because that word was spoken in the movie, but LEMUR won't work, because obviously nobody said LEMUR in the 1984 hit comedy Ghostbusters.</p>
@@ -252,9 +252,9 @@ class IntroModal extends React.Component {
               <h3>Why doesn't the word VINCE work? Surely this dumb game was named after Vince Clortho, Keymaster of Gozer...Volguus Zildrohoar, Lord of the Seboullia?</h3>
               <p>It was, but his name is actually spelled VINZ, not VINCE, and that's only four letters. So that won't work. Sorry, no refunds.</p>
               <h3>Why didn't you name it VINZ CLORDLE then? Had you already purchased vinceclordle.com?</h3>
-              <p>No, I figured that out long before I purchased vinceclordle.com. I just like VINCE better. Plus VINZ sounds like the kind of guy who really wants to explain to you how you're "just not getting" his crypto startup idea. And honestly, I wasn't really interested in hearing about that.</p>
+              <p>No, I figured that out long before I purchased vinceclordle.com. I just like VINCE better.</p>
               <h3>This seems dumb and hard for no reason. So many common five letter words like DREAM and BRAIN aren't available.</h3>
-              <p>Yep. It sure is. Like I said, you really shouldn't even play this. Only five letter words from the 1984 hit comedy Ghostbusters appear in this dumb game. Again, I'm sorry, but I can't offer any refunds.</p>
+              <p>Yep. It sure is. Like I said, you really shouldn't even play this. Only five letter words from the 1984 hit comedy Ghostbusters appear. Again, I'm sorry, but I can't offer any refunds.</p>
               <h3>It doesn't even add anything new to the premise of the game.</h3>
               <p>Correct. It does not. No refunds.</p>
             </section>
@@ -403,7 +403,7 @@ class Header extends React.Component {
           </div>
           </div>
         <div className="title">
-          Vince Clordle
+          <h1>Vince Clordle</h1>
         </div>
         <div className='menu-right'></div>
       </header>

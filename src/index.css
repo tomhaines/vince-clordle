@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Kameron:wght@700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Kameron:wght@400;700&display=swap);
 
 :root {
   --max-game-width: 500px;
@@ -51,6 +51,10 @@ body {
   margin: 0 auto;
 }
 
+.game-container {
+    height: 100%;
+}
+
 .game {
   display: flex;
   flex-direction: column;
@@ -59,16 +63,14 @@ body {
   margin: 0 auto;
   height: calc(100% - var(--header-height));
 }
+
 .header {
   text-align: center;
   width: 100%;
   border-bottom: 1px solid var(--color-tone-3);
-  vertical-align: center;
   color: #fff;
-  font-weight: 700;
   font-family: 'Kameron', 'serif';
   padding: 2px;
-  font-size: 37px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -76,8 +78,23 @@ body {
   flex-wrap: nowrap;
 }
 
-.header .title {
+/* * {
+  outline: 1px solid #ccc;
+  background: rgba(0, 50, 0, .1);
+} */
 
+.header .title h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 2.3em;
+  font-weight: 700;
+}
+
+.header .title p {
+  margin: 0;
+  padding: 0;
+  font-size: .8em;
+  font-weight: 400;
 }
 
 .header .menu-left,
@@ -245,7 +262,7 @@ button.key.correct {
     background-color: var(--color-tone-7);
     color: var(--color-tone-1);
     padding: 16px;
-    font-size: .85rem;
+    font-size: .8rem;
     max-width: var(--max-game-width);
     align-content: center;
     align-items: center;
@@ -273,17 +290,17 @@ button.key.correct {
 }
 
 .intro-modal section.questions h2 {
-    font-size: 1rem;
+    font-size: .9rem;
     padding-top: 10px;
     border-top: 1px solid var(--color-tone-3);
 }
 
 .intro-modal section.questions h3 {
-    font-size: .80rem;
+    font-size: .75rem;
 }
 
 .intro-modal section.questions p {
-    font-size: .75rem;
+    font-size: .7rem;
     padding-left: 10px;
     color: var(--color-tone-2);
 }
